@@ -1,0 +1,36 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET         /                            controllers.Application.index()
+
+POST        /login                       controllers.Application.postLogin()
+GET         /logout                      controllers.Application.logout()
+
+GET         /power                       controllers.Power.show_powerForm()
+POST        /power/sell_Power            controllers.Power.sell_Power()
+
+GET         /airtime                     controllers.Application.profile()
+POST        /airtime/sell_airtime        controllers.Application.sell_airtime()
+
+GET         /store                       controllers.Store.show_storeForm()
+POST        /store/recharge              controllers.Store.recharge_store()
+
+GET         /add/airtel/form             controllers.Application.AddAirtel()
+POST        /save/airtel                 controllers.Application.saveAirtel()
+GET         /balance                     controllers.Store.ShowBalance()
+
+GET         /mtn                         controllers.Application.MTNHistoryAirtime()
+GET         /tigo                        controllers.Application.TigoHistoryAirtime()
+GET         /airtel                       controllers.Application.AirtelHistoryAirtime()
+
+GET         /electricity                      controllers.Power.showHistoryPower()
+
+# Authentication
+GET     /supervisor                              controllers.Session.login()
+POST    /supervisor/                            controllers.Session.authenticate()
+GET     /logout                             controllers.Session.logout()
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file                controllers.Assets.at(path="/public", file)

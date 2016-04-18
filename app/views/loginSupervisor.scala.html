@@ -1,0 +1,39 @@
+@(form: Form[Session.Login])
+
+    @main("login"){
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-primary col-sm-offset-3"><i >supervisor panel</i></h3>
+                </div>
+                <div class="panel-body">
+                        @helper.form(routes.Session.authenticate ,'role -> "fom") {
+
+                            <fieldset>
+                            <div class="form-group  " >
+                                <input class="form-control " type="email" name="email" placeholder="Email" value="@form("email").value">
+                            </div>
+                            <div class="form-group " >
+                                <input class="form-control" type="password" name="password" placeholder="Password">
+                            </div>
+                            <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
+                        </fieldset>
+                    }
+                    @if(flash.containsKey("error")) {
+                        <div id="error-message" class="text-danger">
+                        @flash.get("error")
+                        </div>
+                    }
+
+                    @if(flash.contains("success")) {
+                        <p class="success">
+                        @flash.get("success")
+                        </p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

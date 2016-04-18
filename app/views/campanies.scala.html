@@ -1,0 +1,60 @@
+
+@(campanyForm: Form[mtnUsers])
+@import views.html.helper._
+@main("sending...") {
+
+
+    <div class="campany-margin">
+        <ul class="nav  nav-pills nav-tabs nav-stacked pill">
+            <li class="active"><a href="#">sending..</a></li>
+        </ul> <br/> <br/> <br/>
+    @form(routes.Application.profile(), 'class -> "form-horizontal ",'role ->"form") {
+
+        <div class="form-group">
+            <label class="control-label col-xs-3 control ">MTN Rw </label>
+            <div class="col-xs-3">
+                <select class="form-control"
+                name="@campanyForm("mtn").name"
+                id="@campanyForm("mtn").id"
+                 >
+                    <option>--select item--</option>
+                    <option>MTN Rw</option>
+                </select>
+                <input type="submit" class="btn btn-inverse " value="send">
+            </div>
+        </div>
+
+        <div class="form-group"><br/>
+            <label class="control-label col-xs-3  control ">Tigo</label>
+            <div class="col-xs-3">
+                <select class="form-control"
+                name="@campanyForm("tigo").name"
+                id="@campanyForm("tigo").id">
+                    <option>--select item--</option>
+                    <option >Tigo</option>
+                </select>
+               <input type="submit" class="btn btn-primary" value="send">
+            </div>
+        </div>
+
+        <div class="form-group"><br/>
+            <label class="control-label col-xs-3 control">airtel</label>
+            <div class="col-xs-3" >
+                <select class="form-control"
+                name="@campanyForm("airtel").name"
+                id="@campanyForm("airtel").id" >
+                    <option>--select item--</option>
+                    <option >airtel</option>
+                </select>
+               <input type="submit" class="btn btn-danger" value="send">
+            </div>
+        </div>
+
+
+
+}
+
+</div>
+
+}
+

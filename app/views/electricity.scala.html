@@ -1,0 +1,10 @@
+@(page: String, electricityForm: Form[views.formdata.electricityFormData])
+@import views.html.bootstrapForm._
+@main(page) {
+    <div class="container">
+    @electricityform(routes.Power.sell_Power(),
+        electricityForm("meterNumber"),electricityForm("customerNames"),electricityForm("amount") )
+    </div>
+
+
+}

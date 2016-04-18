@@ -1,0 +1,65 @@
+@(totalSum: Long, taskForm: Form[airtimeStore])
+@main("current balance") {
+
+
+    <div class="row">
+        <div class="table-responsive col-md-7  col-md-offset-2  ">
+            <table class="table table-bordered   " >
+
+
+                <tbody>
+
+                    <tr bgcolor="#e6e6fa" >
+                        <td class=" color-title  " colspan="2">Money transfer ..</td>
+                    </tr>
+
+
+                    <tr>
+
+                        <td width="200px"  >
+                            <ul class="nav  nav-pills nav-tabs nav-stacked">
+                                <li class="active "><a href="@routes.Application.profile()">Home</a></li>
+                                <li><a href="#"> <span class="glyphicon glyphicon-user"></span>Profile</a></li>
+                                <div class="empty"></div>
+
+                                <li><a href="/balance"><span class="glyphicon glyphicon-comment span3 " ></span>Balance</a></li>
+                                <li><a href="@routes.Store.show_storeForm()"><span class="glyphicon glyphicon-hand-down"></span>Purchase</a></li>
+                                <li><a href="@routes.Application.MTNHistoryAirtime()"><span class="glyphicon glyphicon-folder-open "></span>History</a></li>
+                                <li><a href="@routes.Power.show_powerForm()"><span class="glyphicon glyphicon-flash"></span>Sell Power</a></li>
+                                <li><a href="@routes.Application.profile()"><span class="glyphicon glyphicon-phone"></span>Sell Airtime</a></li>
+                                <li><a href="@routes.Application.logout()"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+                            </ul>
+                        </td>
+
+                        <td>
+    <div class="col-md-12  client-margin">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+              current Balance
+            </div>
+            <div class="panel-body"> <br/><br/><br/>
+
+                    <p><b class=" col-md-offset-4 ">Balance:</b> </p>
+               <div class="span6 col-md-offset-4 ">
+                <p><i >@totalSum rwf</i></p>
+
+                          </div>
+
+
+               </div>
+
+        </div>
+    </div>
+
+
+
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+
+
+
+}
