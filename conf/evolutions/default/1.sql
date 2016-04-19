@@ -26,11 +26,11 @@ create table store (
   constraint pk_store primary key (id))
 ;
 
-create table users (
+create table login (
   email                     varchar(255) not null,
   name                      varchar(255),
   password                  varchar(255),
-  constraint pk_users primary key (email))
+  constraint pk_login primary key (email))
 ;
 
 create table mtn (
@@ -51,6 +51,14 @@ create table power (
   amount                    integer,
   done_at                   datetime,
   constraint pk_power primary key (id))
+;
+
+create table users (
+  username                  varchar(255),
+  email                     varchar(255),
+  password                  varchar(255),
+  type                      varchar(255),
+  done_at                   datetime)
 ;
 
 create table tigo (
@@ -77,11 +85,13 @@ drop table airtel;
 
 drop table store;
 
-drop table users;
+drop table login;
 
 drop table mtn;
 
 drop table power;
+
+drop table users;
 
 drop table tigo;
 

@@ -23,14 +23,19 @@ GET         /balance                     controllers.Store.ShowBalance()
 
 GET         /mtn                         controllers.Application.MTNHistoryAirtime()
 GET         /tigo                        controllers.Application.TigoHistoryAirtime()
-GET         /airtel                       controllers.Application.AirtelHistoryAirtime()
+GET         /airtel                      controllers.Application.AirtelHistoryAirtime()
 
-GET         /electricity                      controllers.Power.showHistoryPower()
+GET         /electricity                 controllers.Power.showHistoryPower()
 
 # Authentication
-GET     /supervisor                              controllers.Session.login()
-POST    /supervisor/                            controllers.Session.authenticate()
-GET     /logout                             controllers.Session.logout()
+GET         /supervisor                  controllers.Session.login()
+POST        /supervisor/                 controllers.Session.authenticate()
+GET         /logout                      controllers.Session.logout()
+GET         /fill                    controllers.Signup.register()
+POST        /register                    controllers.Signup.registerSubmition()
+
+
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                controllers.Assets.at(path="/public", file)

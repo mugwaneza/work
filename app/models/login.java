@@ -15,7 +15,7 @@ import java.util.List;
  * Created by alexis on 4/17/2016.
  */
 @Entity
-@Table(name="users")
+@Table(name="login")
 public class login extends Model {
 
     private static final long serialVersionUID = 1L;
