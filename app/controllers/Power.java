@@ -1,6 +1,6 @@
 package controllers;
 
-import models.power;
+import models.powerData;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -16,14 +16,13 @@ public class Power extends Controller {
 
 
     public  static     Result show_powerForm(){
-    Form<power> formData = Form.form(power.class);
+    Form<powerData> formData = Form.form(powerData.class);
         return ok(electricity.render(formData));
     }
 
 public static Result sell_Power() {
-
-    Form<power> formData = Form.form(power.class).bindFromRequest();
-    power.sendPower(formData.get());
+    Form<powerData> formData = form(powerData.class).bindFromRequest();
+    powerData.sendPower(formData.get());
 
 
     return ok("Power sent");
@@ -31,8 +30,8 @@ public static Result sell_Power() {
 }
     public static Result showHistoryPower() {
 
-        Form<power> taskData = form(power.class);
-        return ok(historyPower.render(power.power(), taskData));
+        Form<powerData> taskData = form(powerData.class);
+        return ok(historyPower.render(powerData.umuriro(), taskData));
     }
 
 }

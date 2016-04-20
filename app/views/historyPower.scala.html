@@ -1,4 +1,4 @@
-@( formList: List[power],form: Form[power]) )
+@( formList: List[powerData],form: Form[powerData]) )
 
 @main("Tigo history..") {
     <div class="navbar navbar-inverse navbar-fixed-top   " role="navigation">
@@ -45,7 +45,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @for(i <- power.power()) {
+                        @for(i <- powerData.umuriro()) {
 
                                 <tr>
 

@@ -44,13 +44,13 @@ create table mtn (
   constraint pk_mtn primary key (id))
 ;
 
-create table power (
+create table power_data (
   id                        bigint auto_increment not null,
   meter_number              integer,
   customer_names            varchar(255),
   amount                    integer,
   done_at                   datetime,
-  constraint pk_power primary key (id))
+  constraint pk_power_data primary key (id))
 ;
 
 create table users (
@@ -89,7 +89,7 @@ drop table login;
 
 drop table mtn;
 
-drop table power;
+drop table power_data;
 
 drop table users;
 
