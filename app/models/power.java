@@ -34,9 +34,9 @@ public class power extends Model {
 
     public static Finder<Long, power> find = new Finder(Long.class, power.class);
 
-    public static void sendPower(power power) {
+    public static void sendPower(power electricity) {
 
-            power.save();
+            electricity.save();
     }
 
     /*

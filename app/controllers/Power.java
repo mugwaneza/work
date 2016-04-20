@@ -4,7 +4,6 @@ import models.power;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.formdata.electricityFormData;
 import views.html.electricity;
 import views.html.historyPower;
 
@@ -17,14 +16,16 @@ public class Power extends Controller {
 
 
     public  static     Result show_powerForm(){
-    Form<electricityFormData> formData = Form.form(electricityFormData.class);
-        return ok(electricity.render("Selling eletricity..", formData));
+    Form<power> formData = Form.form(power.class);
+        return ok(electricity.render(formData));
     }
 
 public static Result sell_Power() {
 
     Form<power> formData = Form.form(power.class).bindFromRequest();
     power.sendPower(formData.get());
+
+
     return ok("Power sent");
 
 }
