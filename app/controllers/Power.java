@@ -22,12 +22,13 @@ public class Power extends Controller {
 
 public static Result sell_Power() {
     Form<powerData> formData = form(powerData.class).bindFromRequest();
+
+
     powerData.sendPower(formData.get());
 
+        return ok("Power sent");
+    }
 
-    return ok("Power sent");
-
-}
     public static Result showHistoryPower() {
 
         Form<powerData> taskData = form(powerData.class);

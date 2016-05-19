@@ -28,6 +28,8 @@ public class powerData extends Model {
 
     @Constraints.Required
     public int amount;
+
+
     public Timestamp doneAt = new Timestamp(new Date().getTime());
 
 
@@ -36,10 +38,10 @@ public class powerData extends Model {
 
     public static void sendPower(powerData electricity) {
 
-            electricity.save();
+        electricity.save();
     }
 
-    /*
+        /*
     public static List<Power> powerhistory(final User amount) {
         return find
                 .where()

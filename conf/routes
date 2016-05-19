@@ -24,15 +24,19 @@ GET         /balance                     controllers.Store.ShowBalance()
 GET         /mtn                         controllers.Application.MTNHistoryAirtime()
 GET         /tigo                        controllers.Application.TigoHistoryAirtime()
 GET         /airtel                      controllers.Application.AirtelHistoryAirtime()
-
 GET         /electricity                 controllers.Power.showHistoryPower()
 
 # Authentication
 GET         /supervisor                  controllers.Session.login()
 POST        /supervisor/                 controllers.Session.authenticate()
 GET         /logout                      controllers.Session.logout()
-GET         /fill                    controllers.Signup.register()
+GET         /register                    controllers.Signup.register()
 POST        /register                    controllers.Signup.registerSubmition()
+
+# Authentication
+GET     /loginUser                      controllers.Application.loginUser()
+POST    /loginUser                      controllers.Application.authenticateUser()
+GET     /logout                     controllers.Application.logoutUser()
 
 
 

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by alexis on 4/6/2016.
@@ -21,10 +22,16 @@ public class airtimeStore extends Model {
     @Id
     public Long id;
 
-    public int amount=0;
-     public Timestamp doneAt = new Timestamp(new Date().getTime());
+    public int amount =0;
+     public Timestamp updated = new Timestamp(new Date().getTime());
 
     public static Finder<Long, airtimeStore> find = new Finder(Long.class, airtimeStore.class);
+
+    public static List<airtimeStore> all() {
+        return find.all();
+    }
+
+    public static airtimeStore findById(Long id) {return (find.ref(id));}
 
 
     /*
@@ -36,6 +43,8 @@ public class airtimeStore extends Model {
 */
 
     public static void recharge(airtimeStore storedb) {
+
+
     storedb.save();
 
         }

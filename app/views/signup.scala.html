@@ -12,7 +12,7 @@
          <h3 class="panel-title text-primary col-sm-offset-3"><i>Account information</i></h3>
        </div>
                     <div class="panel-body">
-    @helper.form(routes.Signup.registerSubmition(),'role -> "form") {
+   <form action="@routes.Signup.registerSubmition()" method="POST">
         <div class="form-group row  ">
             <label class="col-sm-2 form-control-label">User Name</label>
             <div class="col-sm-10">
@@ -20,11 +20,15 @@
                 name="username"
                 id="username"
                 class="form-control"
+
+                data-title="Please enter your name"
+                data-regex="^(?![0-9]).*?$"
+                required=""
+
                 type="text"
-                placeholder="username">
+                placeholder="username"/>
             </div>
         </div>
-
 
         <div class="form-group row  ">
             <label class="col-sm-2 form-control-label">Email</label>
@@ -33,9 +37,13 @@
                 name="email"
                 id="email"
 
+                data-title="Please use valid Email address"
+                required=""
+                data-regex="email"
+
                 class="form-control"
                 type="email"
-                placeholder="Email">
+                placeholder="Email"/>
             </div>
         </div>
 
@@ -44,11 +52,13 @@
             <div class="col-sm-10">
 
                 <select class="form-control"
-                name="type"
-                id="type"
-                value="type"
-                >
-                    <option value="select">select ..</option>
+
+
+                data-title="Please select level"
+                required
+                name="level"
+                id="level">
+                    <option value="" >select ..</option>
                     <option value="vendor">vendor</option>
                     <option value="admin">admin</option>
                     <option value="supervisor">supervisor</option>
@@ -63,11 +73,12 @@
                 <input
                 name="password"
                 id="password"
-
-
+                data-title="Please enter paswsword"
+                data-regex="^(?![0-9]).*?$"
+                required=""
                 class="form-control"
                 type="password"
-                placeholder="Password">
+                placeholder="Password"/>
             </div>
         </div>
 
@@ -80,15 +91,17 @@
                 value=""
                 class="form-control"
                 type="password"
-                placeholder="Repeat password">
+                placeholder="Repeat password"/>
             </div>
         </div>
+
+
         <div class=" form-group col-md-offset-2  ">
-            <input type="submit" class="btn btn-primary " value="Sign Up">
+            <input type="submit" class="btn btn-primary " value="Sign Up"/>
             <a href="@routes.Application.index" ><input type="submit" class="btn btn-default " value="Cancel"></a>
 
            </div>
-    }
+    </form>
 
      </div>
      </div>

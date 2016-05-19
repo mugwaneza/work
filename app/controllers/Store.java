@@ -26,7 +26,12 @@ public class Store extends Controller {
       Form<airtimeStore> taskData = form(airtimeStore.class);
         Form<airtimeStore> tasks = taskData.bindFromRequest();
         airtimeStore.recharge(tasks.get());
-       return ok ("Stored successfully");
+
+
+            return ok ("Stored successfully");
+
+
+
     }
     public static Result ShowBalance( ) {
   Form<airtimeStore> taskData = form(airtimeStore.class);

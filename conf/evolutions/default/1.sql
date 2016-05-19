@@ -3,9 +3,12 @@
 
 # --- !Ups
 
-create table ORDERS (
-  PRICE                     float,
-  final_price               float)
+create table user_account (
+  acc_id                    bigint auto_increment not null,
+  username                  varchar(255),
+  password                  varchar(255),
+  group_id                  integer,
+  constraint pk_user_account primary key (acc_id))
 ;
 
 create table airtel (
@@ -22,7 +25,7 @@ create table airtel (
 create table store (
   id                        bigint auto_increment not null,
   amount                    integer,
-  done_at                   datetime,
+  updated                   datetime,
   constraint pk_store primary key (id))
 ;
 
@@ -35,7 +38,7 @@ create table login (
 
 create table mtn (
   id                        bigint auto_increment not null,
-  phone_number              integer,
+  phone_number              varchar(255),
   first_name                varchar(255),
   last_name                 varchar(255),
   client                    varchar(255),
@@ -54,11 +57,12 @@ create table power_data (
 ;
 
 create table users (
+  email                     varchar(255) not null,
   username                  varchar(255),
-  email                     varchar(255),
   password                  varchar(255),
-  type                      varchar(255),
-  done_at                   datetime)
+  level                     varchar(255),
+  done_at                   datetime,
+  constraint pk_users primary key (email))
 ;
 
 create table tigo (
@@ -79,7 +83,7 @@ create table tigo (
 
 SET FOREIGN_KEY_CHECKS=0;
 
-drop table ORDERS;
+drop table user_account;
 
 drop table airtel;
 

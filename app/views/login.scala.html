@@ -1,0 +1,33 @@
+@(form: Form[Application.LoginUser])
+    @main("School Management System") {
+
+
+        @helper.form(routes.Application.authenticateUser, 'class -> "form-signin") {
+
+            <h2 class="form-signin-heading">Sign-in to SMGTS</h2>
+
+            @if(form.hasGlobalErrors) {
+                <p class="text-error">
+                @form.globalError.message
+                </p>
+            }
+
+            @if(flash.contains("success")) {
+                <p class="text-success">
+                @flash.get("success")
+                </p>
+            }
+
+            <p>
+                <input type="text" class="input-block-level" type="username" name="username" placeholder="Username" value='@form("username").value'>
+            </p>
+            <p>
+                <input type="password" class="input-block-level" type="password" name="password" placeholder="Password">
+            </p>
+            <p>
+                <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+            </p>
+
+
+        }
+    }

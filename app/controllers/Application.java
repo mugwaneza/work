@@ -1,8 +1,6 @@
 package controllers;
 
-import models.airtelUsers;
-import models.mtnUsers;
-import models.tigoUsers;
+import models.*;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -64,7 +62,7 @@ public class Application extends Controller {
      * @return The Profile page.
      */
     @Security.Authenticated(Secured.class)
-    public static Result profile() {
+      public static Result profile() {
 
         Form<mtnUsers> formData = Form.form(mtnUsers.class);
         return ok(customer.render( formData));
@@ -77,27 +75,49 @@ public class Application extends Controller {
         Form<mtnUsers> formData_one = Form.form(mtnUsers.class).bindFromRequest();
         Form<tigoUsers> formData_two = Form.form(tigoUsers.class).bindFromRequest();
         Form<airtelUsers> formData_three = Form.form(airtelUsers.class).bindFromRequest();
- if (formData_one.get().client.equals("MTN")) {
-     mtnUsers.save(formData_one.get());
 
+       if (formData_one.hasErrors() && formData_two.hasErrors() && formData_three.hasErrors())   {
+            flash("error", " Please fill vaccant field ...");
 
-     return ok("Mituyu yagiye kuri MTN successfully");
-
- }
-       else if (formData_one.get().client.equals("Tigo")) {
-            tigoUsers.save(formData_two.get());
-            return ok("Mituyu yagiye kuri TIGO successfully");
+            return badRequest(views.html.customer.render(formData_one));
         }
 
-        else if (formData_one.get().client.equals("Airtel")) {
-            airtelUsers.save(formData_three.get());
-            return ok("Mituyu yagiye kuri AIRTEL successfully");
-        }
-        else{
-     return ok("Oops failed...");
- }
+        if (formData_one.get().client.equals("select")) {
+            flash("error", " Please select select user ..");
+            return badRequest(views.html.customer.render(formData_one));
         }
 
+        else {
+
+            if (formData_one.get().client.equals("MTN")) {
+
+                    mtnUsers.save(formData_one.get());
+
+
+                    String amount = formData_one.bindFromRequest().field("amount").value();
+                    int am = Integer.parseInt(amount);
+
+                    long storeId = 0;
+                    for (airtimeStore a : airtimeStore.all()) {
+                        storeId = a.id;
+                    }
+                    airtimeStore airtimeStore1 = airtimeStore.findById(storeId);
+                    airtimeStore1.amount = airtimeStore1.amount - am;
+                    airtimeStore1.save();
+
+                    return ok("Mituyu yagiye kuri MTN successfully");
+
+            } else if (formData_one.get().client.equals("Tigo")) {
+                tigoUsers.save(formData_two.get());
+                return ok("Mituyu yagiye kuri TIGO successfully");
+            } else if (formData_one.get().client.equals("Airtel")) {
+                airtelUsers.save(formData_three.get());
+                return ok("Mituyu yagiye kuri AIRTEL successfully");
+            } else {
+                return ok("Oops failed...");
+            }
+        }
+        }
 
 
     public static Result MTNHistoryAirtime(){
@@ -117,6 +137,61 @@ public class Application extends Controller {
 
 
 
+    public static class LoginUser {
+
+        public String username;
+        public String password;
+        public LoginUser() {
+        }
+        public String validate() {
+            if(Accounts.autholise(username, password) == null) {
+                return "Invalid user or password";
+            }
+            return null;
+        }
+
+    }
+
+    /**
+     * Login page.
+     */
+    public static Result loginUser() {
+        Form<LoginUser> loginForm = Form.form(LoginUser.class);
+
+        return ok(views.html.login.render(Form.form(LoginUser.class)) );
+    }
+
+    /**
+     * Handle login form submission.
+     */
+    public static Result authenticateUser() {
+        Form<LoginUser> loginForm = Form.form(LoginUser.class).bindFromRequest();
+        if(loginForm.hasErrors()) {
+            return badRequest(views.html.login.render(loginForm));
+        } else {
+            session("username", loginForm.get().password);
+            return ok("gude loged in");
+        }
+    }
+
+    /**
+     * Logout and clean the session.
+     */
+
+    public static Result logoutUser() {
+        session().clear();
+        flash("success", "You've been logged out");
+        return redirect("/  ");
+    }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -133,19 +208,27 @@ public class Application extends Controller {
 
 
     public static Result AddAirtel() {
+
+
+
+
+
         return ok(views.html.airtelAdd.render());
     }
 
     public static Result saveAirtel() {
         Form<mtnUsers> airtelForm = Form.form(mtnUsers.class).bindFromRequest();
-        mtnUsers customer = airtelForm.get();
+
+
+
+            mtnUsers customer = airtelForm.get();
 
         /*System.out.format("%s,%s,%s,%s,%sn",customer.phoneNumber,customer.firstName,customer.lastName,customer.user,customer.amount);*/
 
-                return redirect("/add/airtel/form");
-            }
-
+            return redirect("/add/airtel/form");
+        }
     }
+
 
 
 

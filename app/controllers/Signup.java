@@ -33,9 +33,15 @@ public class Signup  extends Controller {
      */
     public static Result registerSubmition() {
         Form<signupInfo> filledForm = signupForm.bindFromRequest();
-            signupInfo.create(filledForm.get());
+        // Check if form is valid
+
+        if(filledForm.hasErrors()) {
+            flash("error", "Login credentials not valid.");
+            return badRequest(views.html.signup.render(filledForm));
+        } else {
             signupInfo created = filledForm.get();
             return ok(summary.render(created));
+        }
         }
     }
 

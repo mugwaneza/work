@@ -20,11 +20,23 @@
                                 <ul class="nav  nav-pills nav-tabs nav-stacked">
                                     <li class="active "><a href="@routes.Application.profile()">Home</a></li>
                                     <li><a href="#"> <span class="glyphicon glyphicon-user"></span>Profile</a></li>
+
                                     <div class="empty"></div>
 
                                     <li><a href="/balance"><span class="glyphicon glyphicon-comment span3 " ></span>Balance</a></li>
                                     <li><a href="@routes.Store.show_storeForm()"><span class="glyphicon glyphicon-hand-down"></span>Purchase</a></li>
-                                    <li><a href="@routes.Application.MTNHistoryAirtime()"><span class="glyphicon glyphicon-folder-open "></span>History</a></li>
+
+                                    <li data-toggle="collapse" data-target="#demo" ><a ><span class="glyphicon glyphicon-folder-open "></span>History</a></li>
+                                    <div id="demo" class="collapse">
+                                        <ul class="list-unstyled ">
+                                      <li><a href="@routes.Application.MTNHistoryAirtime()"><i>Airtime history</i></a></li>
+
+                                      <li class="active"><a href="/electricity"><i>Power history</i></a></li>
+
+                                            </ul>
+                                        </div>
+
+
                                     <li><a href="@routes.Power.show_powerForm()"><span class="glyphicon glyphicon-flash"></span>Sell Power</a></li>
                                     <li><a href="@routes.Application.profile()"><span class="glyphicon glyphicon-phone"></span>Sell Airtime</a></li>
                                     <li><a href="@routes.Application.logout()"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
@@ -38,11 +50,10 @@
                                         <div class="panel-heading">
                                             Client account
                                         </div>
-                                        <div class="panel-body"> <br/>
 
+                                            <form action="@routes.Application.sell_airtime()" method="post">
 
-                                            @helper.form(routes.Application.sell_airtime(),'role -> "form") {
-
+                                                <div class="panel-body"> <br/>
 
                                                 <div class="form-group row  ">
                                                     <label class="col-sm-2 form-control-label">Phone Number</label>
@@ -71,7 +82,7 @@
                                                         </div>
                                                        </div>
 
-                                                    <div class="form-group row   ">
+                                                    <div class="form-group row ">
                                                         <label class="col-sm-2 form-control-label">Last Name</label>
                                                         <div class="col-sm-10">
                                                             <input
@@ -87,7 +98,7 @@
 
 
 
-                                                    <div class="form-group row  ">
+                                                    <div class="form-group row   ">
 
                                                         <label class="col-sm-2 form-control-label">User</label>
                                                         <div class="col-sm-10">
@@ -108,13 +119,13 @@
 
 
 
-                                                    <div class="form-group row  ">
+                                                    <div class="form-group row   ">
                                                         <label class="col-sm-2 form-control-label">Amount</label>
                                                         <div class="col-sm-10">
                                                             <input
                                                             name="amount"
                                                             id=""
-                                                            value=""
+                                                            value="@customerForm("amount").value"
                                                             class="form-control"
                                                             type="number"
                                                             placeholder="Rwfr">
@@ -122,23 +133,23 @@
                                                     </div>
 
 
+                                                    @if(flash.containsKey("error")) {
+                                                        <div id="error-message" class="text-danger col-md-offset-3">
+                                                        @flash.get("error")
+                                                        </div>
+                                                    }
 
-                                            </div>
+
+
+                                        </div>
                                         <div class="panel-footer">
-
-
-                                            <input type="submit" class="btn btn-danger  " value="Add">
+                                            <input type="submit" class="btn btn-danger  " value="Send">
                                             <input type="reset" class="btn btn-warning" value="Reset">
 
 
                                         </div>
 
-                                        }
-                                        @if(flash.containsKey("error")) {
-                                            <div id="error-message" class="text-danger">
-                                            @flash.get("error")
-                                            </div>
-                                        }
+                                        </form>
 
                                 </div>
                                 </div>

@@ -1,10 +1,8 @@
 package models;
-
-
-
 import play.db.ebean.Model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -16,15 +14,18 @@ import java.util.Date;
 @Table(name ="users")
 public class signupInfo extends Model {
 
+
+
+
     public String username;
 
+    @Id
     public String email;
 
     public String password;
 
+    public String level;
 
-
-    public String type;
     public Timestamp doneAt = new Timestamp(new Date().getTime());
     public signupInfo() {}
 
@@ -32,7 +33,7 @@ public class signupInfo extends Model {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.type = type;
+        this.level = level;
     }
     public static void create(signupInfo account) {
 

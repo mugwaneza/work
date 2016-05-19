@@ -1,5 +1,6 @@
 package models;
 
+import play.data.validation.Constraints;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
@@ -19,7 +20,9 @@ public class mtnUsers extends Model {
     public Long id;
 
     @Required /*@MinLength(12)*/
-    public int phoneNumber;
+
+    @Constraints.Pattern(value = "[0-9.+]+", message = "A valid phone number is required")
+    public String phoneNumber;
     @Required
     public String firstName;
     @Required
